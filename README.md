@@ -2,17 +2,16 @@
 
 ## Overview
 
-This repo is a backend for our full-stack app MaintenancePro
-[ https://github.com/ujjawalsidhpura/MaintenancePro ].
-
+This repo is a backend for our full-stack app MaintenancePro.
 <br>
+https://github.com/ujjawalsidhpura/MaintenancePro
 
 ### Few key takes
 
 - NoSQL database
 - MongoDB
 - Deployed on Heroku
-- Gives API endpoint for front end to communicate with.
+- Gives API endpoint for Front-end to communicate with.
 
 ## Dependencies / Tech-stack
 
@@ -28,4 +27,4 @@ This repo is a backend for our full-stack app MaintenancePro
 - Clone the repository
 - `npm install`
 - `cp .env.example .env`
-- Check .env.example to get credentials needed to connec with your mongoDb
+- Check `.env.example` to get credentials needed to connect with your mongoDb
