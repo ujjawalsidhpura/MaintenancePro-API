@@ -1,7 +1,9 @@
 function create(user, callback) {
   const bcrypt = require('bcrypt');
   const MongoClient = require('mongodb').MongoClient;
-  const client = new MongoClient('mongodb+srv://ujjawalsidhpura:1234@cluster0.57jak.mongodb.net/MaintenancePro?retryWrites=true&w=majority');
+  const CONNECTION_URL = process.env.CONNECTION_URL
+  const client = new MongoClient(CONNECTION_URL);
+
   client.connect(function (err) {
     if (err) return callback(err);
     const db = client.db('MaintenancePro');
@@ -32,6 +34,6 @@ let user = {
   password: '123',
   role: 'admin'
 };
-create(user, function(result){
+create(user, function (result) {
   console.log("we are good");
 });
