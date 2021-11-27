@@ -13,7 +13,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const io = require('socket.io')(server, {
   cors: {
-    origin: "https://inspiring-saha-d84f15.netlify.app/",
+    origin: "https://practical-darwin-6ffa5e.netlify.app/",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true
