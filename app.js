@@ -28,17 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
-// const storage = multer.diskStorage({
-// 	destination: (req, file, cb) => {
-// 			cb(null, 'public')
-// 	},
-// 	filename: (req, file, cb) => {
-// 			cb(null, Date.now() + '-' + file.originalname)
-// 	}
-// });
-
-// const upload = multer({storage}).array('file');
-
 
 //Mongo Connection
 const mongoDb = require('./mongoDb');
@@ -52,11 +41,13 @@ mongoDb.connectToServer(function (err) {
   const usersRouter = require('./routes/users');
   const todayRouter = require('./routes/today_at_glance');
   const messagesRouter = require('./routes/message');
+  const assetRouter = require('./routes/assets')
   app.use('/workorder', workorderRouter);
   app.use('/inventory', inventoryRouter);
   app.use('/users', usersRouter);
   app.use('/today', todayRouter);
   app.use('/messages', messagesRouter);
+  app.use('/assets', assetRouter);
 
   //Handle 404 
   app.use(function (req, res, next) {
@@ -73,7 +64,7 @@ mongoDb.connectToServer(function (err) {
 })
 
 io.on('connection', socket => {
-  socket.on('message', ({name, message}) => {
+  socket.on('message', ({ name, message }) => {
     io.emit('message', { name, message });
   })
 })
