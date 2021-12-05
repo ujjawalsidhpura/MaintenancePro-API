@@ -1,4 +1,5 @@
 const express = require('express');
+const { ObjectId } = require('bson');
 const router = express.Router();
 const mongoDb = require('../mongoDb')
 const db = mongoDb.getDb();
@@ -26,6 +27,32 @@ router.post('/', (req, res) => {
 
       res.send('Saved')
     })
+});
+
+router.post('/edit', function (req, res) {
+  console.log(req.body)
+  const asset_id = req.body._id
+
+  db.collection(assets)
+    .updateOne(
+      { _id: ObjectId(asset_id) },
+      {
+        $set: {
+          name: req.body.name,
+          brand: req.body.brand,
+          model: req.body.model,
+          serial: req.body.serial,
+          last_serviced_on: req.body.last_serviced_on,
+          next_service_on: req.body.next_service_on,
+          anticipated_life: req.body.anticipated_life,
+          installed_on: req.body.installed_on
+        }
+      },
+      function (err, result) {
+        if (err) throw err
+        res.send('Updated')
+      }
+    )
 });
 
 module.exports = router;
