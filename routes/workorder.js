@@ -165,7 +165,9 @@ router.post('/started', function (req, res) {
 
 // 2. When technician press ' Finished, 'time_completed' will be inserted and duration will be calculated and inserted 
 router.post('/completed', function (req, res) {
+
   const workorder_id = req.body.workorder_id
+  const remark = req.body.remark
 
   db.collection(workorder).updateOne(
     { _id: ObjectId(workorder_id) },
@@ -173,6 +175,7 @@ router.post('/completed', function (req, res) {
     [
       {
         "$set": {
+          "remark": remark,
           "time_completed": new Date(),
           "duration": {
             "$subtract": [
