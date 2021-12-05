@@ -29,7 +29,6 @@ router.post('/', (req, res) => {
 });
 
 //Edit Inventory
-
 router.post('/edit', function (req, res) {
   const inventory_id = req.body._id
 
@@ -52,7 +51,6 @@ router.post('/edit', function (req, res) {
 });
 
 //Delete Inventory
-
 router.post('/delete', function (req, res) {
   const inventory_id = req.body.inventory_id
 
@@ -67,9 +65,7 @@ router.post('/delete', function (req, res) {
     )
 });
 
-
 //Filter Inventory by Category/Name/Both
-
 router.post('/filter', function (req, res) {
 
   const item_name = req.body.item_name ? req.body.item_name : null;

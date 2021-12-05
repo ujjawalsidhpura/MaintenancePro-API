@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
     })
 });
 
+//Edit Asset
 router.post('/edit', function (req, res) {
   const asset_id = req.body._id
 
@@ -50,6 +51,21 @@ router.post('/edit', function (req, res) {
       function (err, result) {
         if (err) throw err
         res.send('Updated')
+      }
+    )
+});
+
+//Delete Asset
+router.post('/delete', function (req, res) {
+  const asset_id = req.body.asset_id
+
+  db.collection(assets)
+    .deleteOne(
+      { _id: ObjectId(asset_id) },
+
+      function (err, result) {
+        if (err) throw err
+        res.send('deleted')
       }
     )
 });
