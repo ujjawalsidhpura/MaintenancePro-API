@@ -51,6 +51,23 @@ router.post('/edit', function (req, res) {
     )
 });
 
+//Delete Inventory
+
+router.post('/delete', function (req, res) {
+  const inventory_id = req.body.inventory_id
+
+  db.collection(inventory)
+    .deleteOne(
+      { _id: ObjectId(inventory_id) },
+
+      function (err, result) {
+        if (err) throw err
+        res.send('deleted')
+      }
+    )
+});
+
+
 //Filter Inventory by Category/Name/Both
 
 router.post('/filter', function (req, res) {
