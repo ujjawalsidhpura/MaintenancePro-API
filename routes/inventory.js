@@ -1,4 +1,5 @@
 const express = require('express');
+const { ObjectId } = require('bson');
 const router = express.Router();
 const mongoDb = require('../mongoDb')
 const db = mongoDb.getDb();
@@ -25,6 +26,29 @@ router.post('/', (req, res) => {
       if (err) return console.log(err)
       res.send('Saved')
     })
+});
+
+//Edit Inventory
+
+router.post('/edit', function (req, res) {
+  const inventory_id = req.body._id
+
+  db.collection(inventory)
+    .updateOne(
+      { _id: ObjectId(inventory_id) },
+      {
+        $set: {
+          category: req.body.category,
+          item: req.body.item,
+          price_item: req.body.price_item,
+          quantity: req.body.quantity
+        }
+      },
+      function (err, result) {
+        if (err) throw err
+        res.send('Updated')
+      }
+    )
 });
 
 //Filter Inventory by Category/Name/Both

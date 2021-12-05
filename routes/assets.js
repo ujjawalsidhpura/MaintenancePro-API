@@ -30,7 +30,6 @@ router.post('/', (req, res) => {
 });
 
 router.post('/edit', function (req, res) {
-  console.log(req.body)
   const asset_id = req.body._id
 
   db.collection(assets)
