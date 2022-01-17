@@ -1,4 +1,5 @@
 //App setup
+export {}
 require('dotenv').config()
 const express = require('express');
 const path = require('path');
@@ -74,3 +75,7 @@ server.listen(port, () => {
 });
 
 module.exports = app;
+function createError(arg0: number): any {
+  throw new Error("Function not implemented.");
+}
+

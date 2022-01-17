@@ -1,11 +1,12 @@
+export {}
 const passport = require("passport")
 const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt
 const User = require("../models/user")
 
-const opts = {}
+const opts = {jwtFromRequest: String}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
-opts.secretOrKey = process.env.JWT_SECRET
+
 
 // Used by the authenticated requests to deserialize the user,
 // i.e., to fetch user details from the JWT.
